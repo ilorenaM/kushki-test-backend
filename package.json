@@ -4,7 +4,7 @@
   "description": "Kushki sales engineer's technical test backend side",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server"
   },
   "keywords": [
     "node",
