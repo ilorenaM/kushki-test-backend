@@ -39,13 +39,14 @@ router.delete('/void/:ticket',  function (req, res, number){
     //console.log(res);
     
     try{
-        const ticket = req.params.id;
+        const ticket = req.params.ticket;
         const params = {
             "fullResponse": true
         }
         KushkiInstance.delete(`/v1/charges/${ticket}`, {params})
         .then((instRes)=>{
-            response.success(req, res, instRes.data.data)
+            console.log(instRes.data);
+            response.success(req, res, instRes.data)
         })
         .catch((instError)=>{
             if(instError.response){

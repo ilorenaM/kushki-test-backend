@@ -2,13 +2,17 @@ const response = require('../network/response');
 const { verifyToken } = require('../utils/generateToken');
 
 function checkApiKey(req, res, next) {
-    const apiKey = req.headers['token'];
+    const token = req.headers['token'];
+    console.log(token);
     try {
-        verify = verifyToken(apiKey)
-        next();
+        if(!!token){
+            next();
+        } else {
+            next(response.error(req, res, "Unauthorized", 401, "Token required"))
+        }
     } catch (error) {
         console.log(error);
-        next(response.error(req, res, "Unauthorized", 401, "Invalid token"))
+        next(response.error(req, res, "Unauthorized", 401, "Token required"))
     }
 }
 
