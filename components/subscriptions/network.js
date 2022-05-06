@@ -19,10 +19,9 @@ router.post('/makesubscription',checkApiKey,  function (req, res, number){
         .then((instRes)=>{
             console.log(instRes.data);
             try {
-                const subscriptions = require('../../subscriptions.json')
-                var content = [...subscriptions]
-                content.push(instRes.data)
-                fs.writeFileSync('subscriptions.json', JSON.stringify(content));
+                
+                subscriptionsList.push(instRes.data)
+                fs.writeFileSync('subscriptions.json', JSON.stringify(subscriptionsList));
             } catch (error) {
                 console.log(error);
             }
@@ -49,8 +48,7 @@ router.get('/',  function (req, res, number){
     //console.log(res);
     
     try{
-        const subscriptions = require('../../subscriptions.json')
-        response.success(req, res, subscriptions)
+        response.success(req, res, subscriptionsList)
     }catch (err) {
         console.error(err);
         response.error(req, res, err, 500, errorMessage)
