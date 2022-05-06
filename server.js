@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const router = require('./network/routes');
 const {config} = require('./config/config');
-const cors = require('cors')
+const cors = require('cors');
+global.subscriptionsList = require('./subscriptions.json')
 
 var app = express();
 app.use(bodyParser.json());

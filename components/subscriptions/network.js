@@ -21,7 +21,7 @@ router.post('/makesubscription',checkApiKey,  function (req, res, number){
             try {
                 const subscriptions = require('../../subscriptions.json')
                 var content = [...subscriptions]
-                content.push({data: "new Data"})
+                content.push(instRes.data)
                 fs.writeFileSync('subscriptions.json', JSON.stringify(content));
             } catch (error) {
                 console.log(error);
